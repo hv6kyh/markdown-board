@@ -1,1 +1,5 @@
-<p>global-navigation works!</p>
+<div *ngIf="menus">
+  <div *ngFor="let menu of menus">
+    {{menu.name}}
+  </div>
+</div>
