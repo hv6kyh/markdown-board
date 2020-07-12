@@ -1,1 +1,7 @@
-<!-- <div *ngIf="Property" ></div> -->
+<div *ngIf="list.length > 0">
+  <ul>
+    <li *ngFor="let post of list" (click)="goToDetail(post)">
+      {{post.title}}
+    </li>
+  </ul>
+</div>

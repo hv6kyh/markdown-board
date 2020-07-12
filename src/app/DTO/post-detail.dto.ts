@@ -1,5 +1,5 @@
 export interface PostDetail {
-  postId: number;
+  post_id: number;
   title: string;
   body: string;
   reg_dt: string;

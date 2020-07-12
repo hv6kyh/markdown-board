@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ListComponent,
   },
   {
-    path: ':id',
+    path: ':post_id',
     component: DetailComponent,
   },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
@@ -20,5 +20,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [ListComponent, DetailComponent, WriteComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PostModule {}
