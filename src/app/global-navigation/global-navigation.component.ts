@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { API_URL } from '../shared/constant/constant';
 import { Menu } from './../DTO/menu.dto';
 
 @Component({
@@ -14,7 +15,7 @@ export class GlobalNavigationComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<Menu[]>('../../assets/mock-menus.json')
+      .get<Menu[]>(API_URL + '/user/menu')
       .subscribe((menus) => (this.menus = menus));
   }
 }

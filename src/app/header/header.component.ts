@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../DTO/header.dto';
+import { API_URL } from '../shared/constant/constant';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<Header>('./../../assets/mock-header.json')
+      // .get<Header>('./../../assets/mock-header.json')
+      .get<Header>(API_URL + '/hello')
       .subscribe((resp) => (this.header = resp));
   }
 }

@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
     this.postId = this.route.snapshot.params.post_id;
 
     this.postService
-      .getPostDetail()
-      .subscribe((resp) => (this.post = resp[this.postId - 1]));
+      .getPostDetail(this.postId)
+      .subscribe((resp) => (this.post = resp));
   }
 }
