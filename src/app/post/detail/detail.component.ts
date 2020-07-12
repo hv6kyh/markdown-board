@@ -11,11 +11,18 @@ import { PostService } from './../post.service';
 export class DetailComponent implements OnInit {
   post: PostDetail = null;
   postId: number = null;
+  tmp = '';
 
   constructor(
     private readonly postService: PostService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.tmp += '```javascript';
+    this.tmp += `
+      console.log('hello world')
+    `;
+    this.tmp += '```';
+  }
 
   ngOnInit(): void {
     this.postId = this.route.snapshot.params.post_id;

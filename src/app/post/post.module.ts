@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { WriteComponent } from './write/write.component';
@@ -19,7 +20,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [ListComponent, DetailComponent, WriteComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MarkdownModule.forChild(),
+  ],
   exports: [RouterModule],
 })
 export class PostModule {}
