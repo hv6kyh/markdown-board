@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostList } from './../../DTO/post-list.dto';
 import { PostService } from './../post.service';
 
@@ -14,7 +14,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private readonly postService: PostService,
-    private injector: Injector
+    private injector: Injector,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -25,12 +26,17 @@ export class ListComponent implements OnInit {
   }
 
   goToDetail(post: PostList): void {
-    this.router.navigate(['./', post.post_id]);
+    this.router.navigate(['../', post.post_id], { relativeTo: this.route });
     // console.log('post: ', post);
     // console.log('id: ', post.post_id);
     // console.log('title: ', post.title);
     // console.log('reg_dt: ', post.reg_dt);
     // console.log('author: ', post.author);
+    return;
+  }
+
+  goToWrite(): void {
+    this.router.navigate(['../write'], { relativeTo: this.route });
     return;
   }
 }

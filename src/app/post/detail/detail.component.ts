@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Injector, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostDetail } from './../../DTO/post-detail.dto';
 import { PostService } from './../post.service';
 
@@ -9,22 +9,19 @@ import { PostService } from './../post.service';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  public router: Router = null;
   post: PostDetail = null;
   postId: number = null;
-  tmp = '';
 
   constructor(
     private readonly postService: PostService,
-    private route: ActivatedRoute
-  ) {
-    this.tmp += '```javascript';
-    this.tmp += `
-      console.log('hello world')
-    `;
-    this.tmp += '```';
-  }
+    private route: ActivatedRoute,
+    private injector: Injector
+  ) {}
 
   ngOnInit(): void {
+    this.router = this.injector.get(Router);
+
     this.postId = this.route.snapshot.params.post_id;
 
     this.postService
