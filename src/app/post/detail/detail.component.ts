@@ -11,7 +11,7 @@ import { PostService } from './../post.service';
 export class DetailComponent implements OnInit {
   public router: Router = null;
   post: PostDetail = null;
-  postId: number = null;
+  postId: string = null;
 
   constructor(
     private readonly postService: PostService,

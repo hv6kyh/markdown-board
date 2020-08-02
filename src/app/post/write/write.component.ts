@@ -1,4 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-write',
@@ -6,10 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./write.component.scss']
 })
 export class WriteComponent implements OnInit {
+  createPostForm: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private readonly postService: PostService, private readonly location: Location) {
+    this.createPostForm = this.formBuilder.group({
+      title: '',
+      author: '',
+      content: '',
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  submit(e) {
+    this.postService
+      .createPost(e)
+      .subscribe(resp => {
+        alert('작성됨' + JSON.stringify(resp));
+        this.location.back();
+    });
+
   }
 
 }

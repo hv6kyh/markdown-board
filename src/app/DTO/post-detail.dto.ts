@@ -1,7 +1,7 @@
 export interface PostDetail {
-  post_id: number;
+  post_id: string;
   title: string;
-  body: string;
-  reg_dt: string;
+  content: string;
+  reg_dt: Date;
   author: string;
 }
