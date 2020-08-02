@@ -11,6 +11,7 @@ import { PostService } from './../post.service';
 export class ListComponent implements OnInit {
   public router: Router = null;
   list: PostList[] = [];
+  displayedColumns = ['post_id', 'title', 'author', 'reg_dt', 'mod_dt'];
 
   constructor(
     private readonly postService: PostService,

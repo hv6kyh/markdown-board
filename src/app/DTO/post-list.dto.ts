@@ -1,6 +1,6 @@
 export interface PostList {
-  post_id: number;
+  post_id: string;
   title: string;
-  reg_dt: string;
+  reg_dt: Date;
   author: string;
 }

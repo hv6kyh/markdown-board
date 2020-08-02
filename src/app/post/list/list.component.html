@@ -1,9 +1,62 @@
 <div *ngIf="list.length > 0">
   <ul>
     <li *ngFor="let post of list" (click)="goToDetail(post)">
-      {{post.title}}
+      {{ post.title }}
     </li>
   </ul>
 </div>
 
 <button (click)="this.goToWrite()">글 작성</button>
+
+<div class="wrapper">
+  <mat-card class="card">
+    <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+      <div>
+        <H3>자유 게시판</H3>
+        <button mat-raised-button color="primary">
+          <mat-icon>add</mat-icon> Add Post
+        </button>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-table [dataSource]="list">
+          <ng-container matColumnDef="post_id">
+            <mat-header-cell *matHeaderCellDef>no.</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="column-center">{{
+              element.post_id
+            }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef>제목</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.title }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="author">
+            <mat-header-cell *matHeaderCellDef>작성자</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="column-center">{{
+              element.author
+            }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="reg_dt">
+            <mat-header-cell *matHeaderCellDef>작성일</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="column-center">{{
+              element.reg_dt | date: "yyyy-MM-dd HH:mm"
+            }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="mod_dt">
+            <mat-header-cell *matHeaderCellDef>수정</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="column-center">
+              <mat-icon class="icon">edit</mat-icon>
+              <mat-icon class="icon">delete_forever</mat-icon>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <div *ngIf="list.length === 0" class="no-content">
+          등록된 게시글이 없습니다.
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

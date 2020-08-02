@@ -1,15 +1,39 @@
-<!-- <div *ngIf="post" markdown [data]="post.content"></div> -->
-
-<markdown ngPreserveWhitespaces>
-  # Markdown ```js const foo; ``` 1. 강아지 1. 고양이 1. 거북이 ```c foo(123);
-  ``` Emphasis, aka italics, with *asterisks* or _underscores_. Strong emphasis,
-  aka bold, with **asterisks** or __underscores__. Combined emphasis with
-  **asterisks and _underscores_**. Strikethrough uses two tildes. ~~Scratch
-  this.~~
-</markdown>
-
-<div *ngIf="this.post">
+<!-- <div *ngIf="this.post">
   <div markdown ngPreserveWhitespaces>
     {{ this.post.content }}
   </div>
+</div> -->
+
+<mat-card>
+  <mat-card-title>글 상세</mat-card-title>
+  <mat-card-content>
+    <mat-list class="list-class">
+      <mat-list-item>
+        <mat-icon matListIcon>title</mat-icon>
+        <div matLine>{{ post?.title }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>account_circle</mat-icon>
+        <div matLine>{{ post?.author }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>message</mat-icon>
+        <div matLine>
+          <div class="white-space-pre" markdown ngPreserveWhitespaces>
+            {{ post?.content }}
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>date_range</mat-icon>
+        <div matLine>{{ post?.reg_dt | date: "yyyy-MM-dd HH:mm" }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<div class="button">
+  <button mat-stroked-button color="primary">
+    리스트
+  </button>
+  <button mat-raised-button color="primary">수정</button>
 </div>

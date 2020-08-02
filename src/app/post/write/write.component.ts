@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../post.service';
 
 @Component({
@@ -13,11 +13,13 @@ export class WriteComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private readonly postService: PostService, private readonly location: Location) {
     this.createPostForm = this.formBuilder.group({
-      title: '',
-      author: '',
-      content: '',
+      title: new FormControl('', [Validators.required]),
+      author: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required])
     });
   }
+
+  get f() { return this.createPostForm.controls; }
 
   ngOnInit(): void {
   }
@@ -31,5 +33,6 @@ export class WriteComponent implements OnInit {
     });
 
   }
+
 
 }

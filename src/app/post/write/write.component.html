@@ -1,20 +1,10 @@
-<!-- <div>
-  <label for="title">제목:</label>
-  <textarea id="title" placeholder="제목을 입력하세요"></textarea>
-</div>
-
-<div>
-  <label for="body">내용:</label>
-  <textarea id="body" placeholder="내용을 입력하세요"></textarea>
-</div> -->
-
-<form
+<!-- <form
   [formGroup]="this.createPostForm"
   (ngSubmit)="submit(this.createPostForm.value)"
 >
   <div>
-    <!-- 라벨에 for 속성을 주면 id가 같은 입력 필드와 연결됨 -->
-    <!-- 연결된다는 것은 라벨을 누르면 입력 필드에 포커스 감 -->
+    라벨에 for 속성을 주면 id가 같은 입력 필드와 연결됨
+    연결된다는 것은 라벨을 누르면 입력 필드에 포커스 감
     <label for="title">
       title
     </label>
@@ -42,7 +32,6 @@
     <label for="content">
       content
     </label>
-    <!-- <input id="content" type="text" formControlName="content" /> -->
     <textarea
       id="content"
       placeholder="내용을 입력하세요"
@@ -51,4 +40,71 @@
   </div>
 
   <button class="button" type="submit">작성하기</button>
-</form>
+</form> -->
+
+<div class="wrapper">
+  <mat-card>
+    <mat-card-title>글쓰기</mat-card-title>
+    <mat-card-content>
+      <form
+        [formGroup]="createPostForm"
+        (ngSubmit)="submit(this.createPostForm.value)"
+      >
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="제목"
+              formControlName="title"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="작성자"
+              formControlName="author"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <textarea
+              matInput
+              placeholder="내용"
+              formControlName="content"
+              rows="5"
+            ></textarea>
+          </mat-form-field>
+        </p>
+        <p
+          *ngIf="f.title.dirty && f.title.invalid && f.title.errors.required"
+          class="error"
+        >
+          제목을 입력해주세요.
+        </p>
+        <p
+          *ngIf="
+            f.content.dirty && f.content.invalid && f.content.errors.required
+          "
+          class="error"
+        >
+          내용을 입력해주세요.
+        </p>
+        <div class="button">
+          <button
+            type="submit"
+            mat-stroked-button
+            color="primary"
+            [disabled]="!createPostForm.valid"
+          >
+            등록
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
