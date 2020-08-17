@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostDetailResponse } from '../dto';
 import { PostDetail } from './../../DTO/post-detail.dto';
 import { PostService } from './../post.service';
 
@@ -26,6 +27,10 @@ export class DetailComponent implements OnInit {
 
     this.postService
       .getPostDetail(this.postId)
-      .subscribe((resp) => (this.post = resp));
+      .subscribe((resp: PostDetailResponse) => {
+        if (resp.status === 200 && resp.data) {
+          this.post = resp.data;
+        }
+      });
   }
 }

@@ -19,8 +19,10 @@
       <mat-list-item>
         <mat-icon matListIcon>message</mat-icon>
         <div matLine>
-          <div class="white-space-pre" markdown ngPreserveWhitespaces>
-            {{ post?.content }}
+          <div class="white-space-pre">
+            <markdown ngPreserveWhitespaces>
+              {{ post?.content }}
+            </markdown>
           </div>
         </div>
       </mat-list-item>

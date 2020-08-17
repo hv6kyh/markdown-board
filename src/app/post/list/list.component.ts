@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostListResponse } from '../dto';
 import { PostList } from './../../DTO/post-list.dto';
 import { PostService } from './../post.service';
 
@@ -21,7 +22,12 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.router = this.injector.get(Router);
-    this.postService.getPostList().subscribe((resp) => (this.list = resp));
+    this.postService.getPostList()
+      .subscribe((resp: PostListResponse) => {
+        if (resp.status === 200 && resp.data) {
+          this.list = resp.data;
+        }
+      });
 
     return;
   }

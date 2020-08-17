@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PostCreate } from '../DTO/post-create.dto';
 import { API_URL } from '../shared/constant/constant';
 import { PostDetail } from './../DTO/post-detail.dto';
-import { PostList } from './../DTO/post-list.dto';
+import { PostDetailResponse, PostListResponse } from './dto';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +12,12 @@ import { PostList } from './../DTO/post-list.dto';
 export class PostService {
   constructor(private readonly http: HttpClient) {}
 
-  getPostList(): Observable<PostList[]> {
-    return this.http.get<PostList[]>(API_URL + '/post');
+  getPostList(): Observable<PostListResponse> {
+    return this.http.get<PostListResponse>(API_URL + '/post');
   }
 
-  getPostDetail(postId: string): Observable<PostDetail> {
-    return this.http.get<PostDetail>(API_URL + `/post/${postId}`);
+  getPostDetail(postId: string): Observable<PostDetailResponse> {
+    return this.http.get<PostDetailResponse>(API_URL + `/post/${postId}`);
   }
 
   createPost(dto: PostCreate): Observable<PostDetail> {
