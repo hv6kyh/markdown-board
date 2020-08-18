@@ -9,11 +9,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { GlobalNavigationComponent } from './global-navigation/global-navigation.component';
 import { HeaderComponent } from './header/header.component';
+import { LoadingSpinnerOverlayComponent } from './loading/loading-spinner/loading-spinner-overlay.component';
+import { LoadingSpinnerComponent } from './loading/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerService } from './loading/loading-spinner/loading-spinner.service';
 import { PostModule } from './post/post.module';
 import { MaterialModule } from './styles/material.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, GlobalNavigationComponent],
+  declarations: [AppComponent, HeaderComponent, GlobalNavigationComponent, LoadingSpinnerComponent, LoadingSpinnerOverlayComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,7 +28,12 @@ import { MaterialModule } from './styles/material.module';
     FlexLayoutModule,
     AuthModule
   ],
-  providers: [],
+  providers: [
+    LoadingSpinnerService
+  ],
+  entryComponents: [
+    LoadingSpinnerComponent, LoadingSpinnerOverlayComponent
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
